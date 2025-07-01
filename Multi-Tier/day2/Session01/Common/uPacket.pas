@@ -37,8 +37,8 @@ type
     function  GetParams: TJSONObject;
     function  GetService: string;
   public
-    constructor Create(const AService, AMethod: string); virtual; overload;
-    constructor Create(const AData: string); virtual; overload;
+    constructor Create(const AService, AMethod: string); overload; virtual;
+    constructor Create(const AData: string); overload; virtual;
     destructor Destroy; override;
 
     function  FullName: string;
