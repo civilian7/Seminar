@@ -1,0 +1,386 @@
+<!DOCTYPE html><html><head>
+      <title>커리큘럼</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\civilian\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.18\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h2 id="datasnap-핵심-기능-완전-정복">DataSnap 핵심 기능 완전 정복 </h2>
+<h3 id="대상-및-기간">대상 및 기간 </h3>
+<p>대상: 중급 개발자 | 기간: 4일 (총 24시간)</p>
+<h3 id="강의-특징">강의 특징 </h3>
+<h4 id="-datasnap-핵심-기능-완전-정복">🎯 DataSnap 핵심 기능 완전 정복 </h4>
+<p>DataSnap의 핵심기능에 집중하되, 실무에서 가장 많이 사용하는 기능 위주로 차근차근 설명합니다.</p>
+<h4 id="-충분한-시간으로-확실한-학습">💼 충분한 시간으로 확실한 학습 </h4>
+<p>여유롭게 반복 학습하며, DataSnap의 핵심을 완벽히 체득합니다. 같은 개념을 다양한 방식으로 구현해보고, 실무에서 자주 발생하는 문제 상황들을 충분히 연습할 수 있습니다.</p>
+<h4 id="-하나의-완성된-시스템을-점진적으로-구축">🔧 하나의 완성된 시스템을 점진적으로 구축 </h4>
+<p>DataSnap 클라이언트/서버 시스템을 단계별로 완성하면서, 매 세션마다 구체적인 성과물을 만들어 성취감을 높입니다.</p>
+<h3 id="참가자-준비사항">참가자 준비사항 </h3>
+<h4 id="개발에-필요한-프로그램">개발에 필요한 프로그램 </h4>
+<ul>
+<li>Delphi 12.3 Athene 트라이얼 버전:<br>
+<a href="https://www.embarcadero.com/products/delphi/start-for-free">https://www.embarcadero.com/products/delphi/start-for-free</a></li>
+<li>관계형 데이터베이스 시스템(MariaDB 11.x):<br>
+<a href="https://mariadb.org/download/">https://mariadb.org/download/</a></li>
+<li>데이터베이스 쿼리 브라우저(DBEaver):<br>
+<a href="https://dbeaver.io/download/">https://dbeaver.io/download/</a></li>
+<li>API 테스트 도구(Postman):<br>
+<a href="https://www.postman.com/downloads/">https://www.postman.com/downloads/</a></li>
+</ul>
+<h4 id="사전-지식">사전 지식 </h4>
+<ul>
+<li>델파이 기본 문법 및 컴포넌트 활용</li>
+<li>객체지향 프로그래밍 개념</li>
+<li>관계형 데이터베이스 기본지식(SQL)</li>
+<li>HTTP 프로토콜</li>
+<li>JSON</li>
+</ul>
+<h4 id="제공-자료">제공 자료 </h4>
+<ul>
+<li>커리큘럼 및 강의안</li>
+<li>델파이 Begin End 도서</li>
+<li>완성된 샘플 프로젝트 소스코드</li>
+<li>실습에서 사용하는 모든 소스코드, 문서등은 필자의 깃허브에서 내려받을 수 있다.<br>
+<a href="https://github.com/civilian7/seminar">https://github.com/civilian7/seminar</a></li>
+</ul>
+<hr>
+<h4 id="델파이-begin-end-도서">델파이 Begin End 도서 </h4>
+<p>델파이의 기본 교육교재인 <code>델파이 Begin End</code>는 다음과 같이 구성되어 있으며, 구글 드라이브에서 다운로드 받을 수 있습니다.</p>
+<ul>
+<li><strong>0장. 책 소개. 목차</strong><br>
+<a href="https://drive.google.com/file/d/1XYUrORFLAAN_SmIW6yGmRN123W5qOzn_/">https://drive.google.com/file/d/1XYUrORFLAAN_SmIW6yGmRN123W5qOzn_/</a></li>
+<li><strong>PART 1. 델파이 살펴보기</strong>
+<ul>
+<li><strong>1장.</strong> 델파이로 프로젝트 시작하기<br>
+<a href="https://drive.google.com/file/d/1WYpGmsm8CeW_2lLKesVoEl4hAhLnnfQc/">https://drive.google.com/file/d/1WYpGmsm8CeW_2lLKesVoEl4hAhLnnfQc/</a></li>
+<li><strong>2장.</strong> 폼의 특성과 띄우기<br>
+<a href="https://drive.google.com/file/d/1jddrKSEZQWzCEccMlrIkeQkXbxLmhJG9/">https://drive.google.com/file/d/1jddrKSEZQWzCEccMlrIkeQkXbxLmhJG9/</a></li>
+<li><strong>3장.</strong> 컴포넌트와 친해지기<br>
+<a href="https://drive.google.com/file/d/1MgtBRxZ23rsx7gAiN-JoSVqUCOUn_HXP/">https://drive.google.com/file/d/1MgtBRxZ23rsx7gAiN-JoSVqUCOUn_HXP/</a></li>
+<li><strong>4장.</strong> 컴포넌트 라이브러리와 패키지<br>
+<a href="https://drive.google.com/file/d/1jw8isdULcjGxB-vVcWx6ZcVZLLs0AAjL/">https://drive.google.com/file/d/1jw8isdULcjGxB-vVcWx6ZcVZLLs0AAjL/</a></li>
+<li><strong>5장.</strong> 디버거 사용하기<br>
+<a href="https://drive.google.com/file/d/1grPhikaXVABwim60mf-Dok8deVehHSPO/">https://drive.google.com/file/d/1grPhikaXVABwim60mf-Dok8deVehHSPO/</a></li>
+</ul>
+</li>
+<li><strong>PART 2. 델파이로 데이터베이스 프로그래밍하기</strong>
+<ul>
+<li><strong>6장.</strong> 프로그래밍 개요<br>
+<a href="https://drive.google.com/file/d/1Ca7L22cm5l7MmtFeD2lmKkRZsCyqiHjU/">https://drive.google.com/file/d/1Ca7L22cm5l7MmtFeD2lmKkRZsCyqiHjU/</a></li>
+<li><strong>7장.</strong> BDE를 사용한 데이터베이스 프로그래밍(<strong>deprecated</strong>)<br>
+<a href="https://drive.google.com/file/d/1JXYXw8dDX2KfkLBXo1fTGoI2FIbe5efT/">https://drive.google.com/file/d/1JXYXw8dDX2KfkLBXo1fTGoI2FIbe5efT/</a></li>
+<li><strong>8장.</strong> 필드 에디터<br>
+<a href="https://drive.google.com/file/d/1_8QmGYnFa8DfGfabUs4VMpfaPyYGQdZr/">https://drive.google.com/file/d/1_8QmGYnFa8DfGfabUs4VMpfaPyYGQdZr/</a></li>
+<li><strong>9장.</strong> 예외(Exception) 처리<br>
+<a href="https://drive.google.com/file/d/1fpGlA-ySunqjb5WkP6vKPAF3hDIEjDDF/">https://drive.google.com/file/d/1fpGlA-ySunqjb5WkP6vKPAF3hDIEjDDF/</a></li>
+<li><strong>10장.</strong> 보고서 작성하기<br>
+<a href="https://drive.google.com/file/d/1XpKz0ICU7jfL4N2Zv6EcIlPU2ydftEqa/">https://drive.google.com/file/d/1XpKz0ICU7jfL4N2Zv6EcIlPU2ydftEqa/</a></li>
+<li><strong>11장.</strong> DLL 작성과 호출<br>
+<a href="https://drive.google.com/file/d/1iE_upASY72kG_-m9k_NJQGxzO-Tfoy0j/">https://drive.google.com/file/d/1iE_upASY72kG_-m9k_NJQGxzO-Tfoy0j/</a></li>
+<li><strong>12장.</strong> DBExpress를 사용한 데이터베이스 프로그래밍(<strong>deprecated</strong>)<br>
+<a href="https://drive.google.com/file/d/1enTTWw09UM30-VXT-HxW2nFv_l_JE_8T/">https://drive.google.com/file/d/1enTTWw09UM30-VXT-HxW2nFv_l_JE_8T/</a></li>
+<li><strong>13장.</strong> ADO를 이용한 데이터베이스 프로그래밍<br>
+<a href="https://drive.google.com/file/d/1rdk7wxlOli1qPWJDso7e2u1NiD4TZ0tQ/">https://drive.google.com/file/d/1rdk7wxlOli1qPWJDso7e2u1NiD4TZ0tQ/</a></li>
+<li><strong>14장.</strong> 분산처리(DataSnap)<br>
+<a href="https://drive.google.com/file/d/1fyqgji1D9PEpDRe-7sa2ZUngGvKbKXNn/">https://drive.google.com/file/d/1fyqgji1D9PEpDRe-7sa2ZUngGvKbKXNn/</a></li>
+</ul>
+</li>
+<li><strong>PART 3. 델파이로 웹 프로그래밍하기 및 그 외</strong>
+<ul>
+<li><strong>15장.</strong> 웹브로커를 이용한 웹 프로그래밍<br>
+<a href="https://drive.google.com/file/d/1WE-qIQoK0MZvVtoOuVe_RvZeMrPZ2lb5/">https://drive.google.com/file/d/1WE-qIQoK0MZvVtoOuVe_RvZeMrPZ2lb5/</a></li>
+<li><strong>16장.</strong> DataSnap 웹<br>
+<a href="https://drive.google.com/file/d/1kpkTR1oGVJSOE2zzqqw4Tuj1v8bKRclc/">https://drive.google.com/file/d/1kpkTR1oGVJSOE2zzqqw4Tuj1v8bKRclc/</a></li>
+<li><strong>17장.</strong> DataSnap REST<br>
+<a href="https://drive.google.com/file/d/17RCYlf-ppSGamf4gzs-0UblVkC7tb8Mm/">https://drive.google.com/file/d/17RCYlf-ppSGamf4gzs-0UblVkC7tb8Mm/</a></li>
+<li><strong>18장.</strong> 인트라웹을 이용한 웹 프로그래밍(<strong>deprecated</strong>)<br>
+<a href="https://drive.google.com/file/d/19EKu3FJF_kez21qEugFanI-B20KggvOJ/">https://drive.google.com/file/d/19EKu3FJF_kez21qEugFanI-B20KggvOJ/</a></li>
+<li><strong>19장.</strong> 컴포넌트 작성<br>
+<a href="https://drive.google.com/file/d/1MDOpBGVbzjruTMYwuVykGTOyknrWvSRb/">https://drive.google.com/file/d/1MDOpBGVbzjruTMYwuVykGTOyknrWvSRb/</a></li>
+<li><strong>20장.</strong> 인디 컴포넌트를 이용한 프로그래밍<br>
+<a href="https://drive.google.com/file/d/1MmcdNC1MoTSou-rUGfZcjJti4KBcDW6F/">https://drive.google.com/file/d/1MmcdNC1MoTSou-rUGfZcjJti4KBcDW6F/</a></li>
+<li><strong>21장.</strong> 쓰레드<br>
+<a href="https://drive.google.com/file/d/1cF_7G9RlEmiDdMvTAlchBX7HogLl929z/">https://drive.google.com/file/d/1cF_7G9RlEmiDdMvTAlchBX7HogLl929z/</a></li>
+</ul>
+</li>
+<li><strong>부록</strong><br>
+<a href="https://drive.google.com/file/d/1uOHDXjYOdVdpTxuDLZdupalxkrIrNpVw/">https://drive.google.com/file/d/1uOHDXjYOdVdpTxuDLZdupalxkrIrNpVw/</a></li>
+</ul>
+<hr>
+<h2 id="강의-커리큘럼">강의 커리큘럼 </h2>
+<h3 id="day-1-datasnap-기본">DAY 1. DataSnap 기본 </h3>
+<ul>
+<li>
+<p><strong>오전</strong></p>
+<ul>
+<li><strong>실습:</strong> DataSnap 서버/클라이언트 생성 (100분)
+<ul>
+<li>목표: DataSnap 서버/클라이언트를 만드는 방법 이해</li>
+<li>실습내용:
+<ul>
+<li>위저드를 통해 DataSnap Server 생성</li>
+<li>Server Methods Unit 생성</li>
+<li>간단한 서버 메소드 생성</li>
+<li>서버 시작/정지 기능 구현</li>
+<li>서버 테스트</li>
+<li>위저드를 통해 DataSnap Client 생성</li>
+<li>SQLConnection 주요 프러퍼티 설정</li>
+<li>프록시 유닛 생성 및 연결 테스트</li>
+<li>기본 서버 메서드 호출</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>실습:</strong> 데이터베이스 연결 및 조회 구현 (50분)
+<ul>
+<li>목표: FireDAC을 통한 DB 연결 및 조회 구현</li>
+<li>실습내용:
+<ul>
+<li>MariaDB 데이터베이스 연결</li>
+<li>TFDQuery를 통해 조회 메소드 구현</li>
+<li>클라이언트 연결 설정</li>
+<li>DBGrid를 이용한 데이터 표시</li>
+<li>기본 조회 기능 구현</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>오후</strong></p>
+<ul>
+<li><strong>실습:</strong> 데이터베이스 CRUD 구현 (150분)
+<ul>
+<li>목표: 클라이언트 및 서버 CRUD 기능 구현</li>
+<li>실습내용:
+<ul>
+<li>서버 CRUD 메소드 구현</li>
+<li>클라이언트 CRUD 화면 구성</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>마치며</strong></p>
+<ul>
+<li>과정 돌아보기</li>
+<li>Q&amp;A</li>
+</ul>
+</li>
+</ul>
+<h3 id="day-2-datasnap-사용자인증과-crud">DAY 2. DataSnap 사용자인증과 CRUD </h3>
+<ul>
+<li>
+<p><strong>오전</strong></p>
+<ul>
+<li>
+<p><strong>실습:</strong> 사용자 인증 시스템 구현 (100분)</p>
+<ul>
+<li>목표: 로그인/로그아웃 및 세션 관리</li>
+<li>실습내용:
+<ul>
+<li>Users 테이블 생성</li>
+<li>패스워드 해싱 함수 구현</li>
+<li>Login 메서드 작성</li>
+<li>Logout 메서드 구현</li>
+<li>사용자별 권한 부여하기</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>실습:</strong> 권한 기반 CRUD 구현 (50분)</p>
+<ul>
+<li>목표: 사용자 권한에 따른 데이터 조작 기능</li>
+<li>실습내용:
+<ul>
+<li>권한별 버튼 활성화/비활성화 (일반/관리자)</li>
+<li>인증된 CRUD 메서드 작성</li>
+<li>클라이언트에서 권한 확인 후 CRUD 실행</li>
+<li>트랜잭션 처리 및 권한 검증</li>
+<li>감사 로그 기능 (누가, 언제, 무엇을 수정했는지)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>오후</strong></p>
+<ul>
+<li><strong>실습:</strong> REST/JSON 서비스 추가 (150분)
+<ul>
+<li>목표: 웹 클라이언트 지원을 위한 REST API</li>
+<li>실습내용:
+<ul>
+<li>REST 추가</li>
+<li>서버 메서드를 REST API로 노출</li>
+<li>Postman으로 호출</li>
+<li>델파이 프로그램에서 호출</li>
+<li>웹 페이지에서 호출</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>마치며</strong></p>
+<ul>
+<li>과정 돌아보기</li>
+<li>Q&amp;A</li>
+</ul>
+</li>
+</ul>
+<h4 id="day-3-datasnap-고급기능">DAY 3. DataSnap 고급기능 </h4>
+<ul>
+<li>
+<p><strong>오전</strong></p>
+<ul>
+<li><strong>실습:</strong> CallBack 구현 (150분)
+<ul>
+<li>목표: 서버에서 클라이언트로 실시간 알림</li>
+<li>실습내용:
+<ul>
+<li>콜백 인터페이스 정의</li>
+<li>서버 측 콜백 관리 클래스 작성</li>
+<li>클라이언트 콜백 수신 구현</li>
+<li>실시간 메시지 전송 테스트</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>오후</strong></p>
+<ul>
+<li>
+<p><strong>실습:</strong> 데이터 압축/암호화 (50분)</p>
+<ul>
+<li>목표: 데이터 전송 최적화 및 보안</li>
+<li>실습내용:
+<ul>
+<li>압축 필터 적용</li>
+<li>기본 암호화 설정</li>
+<li>성능 비교 테스트</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>실습:</strong> 파일전송 (50분)</p>
+<ul>
+<li>목표: 데이터 전송 최적화 및 보안</li>
+<li>실습내용:
+<ul>
+<li>서버 측 파일 업로드 메서드 작성</li>
+<li>스트림을 이용한 파일 전송</li>
+<li>클라이언트 파일 선택 및 업로드 UI</li>
+<li>진행률 표시 기능 추가</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>실습:</strong> 서버 관리 및 세션 모니터링 (50분)</p>
+<ul>
+<li>목표: 로그인 상태를 포함한 서버 상태 관리</li>
+<li>실습내용:
+<ul>
+<li>로그인된 사용자 목록 표시</li>
+<li>세션 만료 처리 및 강제 로그아웃</li>
+<li>접속 통계 및 보안 모니터링</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>마치며</strong></p>
+<ul>
+<li>과정 돌아보기</li>
+<li>Q&amp;A</li>
+</ul>
+</li>
+</ul>
+<h4 id="day-4-datasnap-실전-프로젝트">DAY 4. DataSnap 실전 프로젝트 </h4>
+<ul>
+<li><strong>오전</strong>
+<ul>
+<li>실습: 패키지로 서비스 구성 (150분)
+<ul>
+<li>목표: 패키지를 사용하여 서비스를 구성</li>
+<li>실습내용:
+<ul>
+<li>공통 패키지 만들기</li>
+<li>서비스 패키지 만들기</li>
+<li>서비스 등록 하기</li>
+<li>서비스 관리도구 만들기</li>
+<li>ToolsAPI로 위저드 만들기</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>오후</strong>
+<ul>
+<li><strong>실습:</strong> 실전 프로젝트 작성하기 (150분)
+<ul>
+<li>목표: 실전 프로젝트 작성</li>
+<li>실습내용:
+<ul>
+<li>MariaDB 설치</li>
+<li>데이터베이스 생성</li>
+<li>서버 만들기</li>
+<li>클라이언트 만들기</li>
+<li>실행 및 테스트해보기</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>마치며</strong>
+<ul>
+<li>과정 돌아보기</li>
+<li>Q&amp;A</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
