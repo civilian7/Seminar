@@ -18,7 +18,7 @@ uses
 
 type
   {$METHODINFO ON}
-  TSystemResource = class(TServerResouece)
+  TSystemResource = class(TServerResource)
   public
     function GetMyIP(AData: string): string;
     function ServerTime(AData: string): string;

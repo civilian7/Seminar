@@ -27,6 +27,8 @@ type
   private
     FPersistentClass: TPersistentClass;
   protected
+    procedure CreateInstance(const CreateInstanceEventObject: TDSCreateInstanceEventObject); override;
+    procedure DestroyInstance(const DestroyInstanceEventObject: TDSDestroyInstanceEventObject); override;
     function  GetDSClass: TDSClass; override;
     procedure Preparing(const PrepareEventObject: TDSPrepareEventObject); override;
   public
@@ -44,6 +46,12 @@ type
   );
   TLogLevels = set of TLogLevel;
 
+  TServerTransport = (
+    stTCPIP,
+    stHTTP
+  );
+  TServerTransports = set of TServerTransport;
+
   TSessionData = class
   public
     ClientID: Integer;
@@ -55,7 +63,7 @@ type
   TLogEvent = procedure(Sender: TObject; const AMessage: string; const ALogLevel: TLogLevel = llDebug) of object;
   TPrepareEvent = procedure(Sender: TObject; AResource: TDynamicServerClass; const PrepareEventObject: TDSPrepareEventObject) of object;
 
-  TServerContainer = class(TDataModule)
+  TServerContainer = class(TComponent)
   strict private
     class var
       FInstance: TServerContainer;
@@ -68,18 +76,24 @@ type
     FLogLevels: TLogLevels;
     FResources: TDictionary<string, TDynamicServerClass>;
     FServer: TDSServer;
+    FServerTransports: TServerTransports;
     FTCPTransport: TDSTCPServerTransport;
 
     FOnLog: TLogEvent;
     FOnPrepare: TPrepareEvent;
 
     procedure AddResource(AResource: TDynamicServerClass);
+    procedure DoCreateInstance(AResource: TDynamicServerClass; const CreateInstanceEventObject: TDSCreateInstanceEventObject); virtual;
+    procedure DoDestroyInstance(AResource: TDynamicServerClass; const DestroyInstanceEventObject: TDSDestroyInstanceEventObject); virtual;
     procedure DoLog(const AMessage: string; const ALogLevel: TLogLevel = llDebug); overload;
     procedure DoLog(const AMessage: string; const AParams: array of const; const ALogLevel: TLogLevel = llDebug); overload;
     procedure DoPrepare(AResource: TDynamicServerClass; const PrepareEventObject: TDSPrepareEventObject);
     procedure RemoveResource(AResource: TDynamicServerClass);
     procedure TriggerConnect(DSConnectEventObject: TDSConnectEventObject);
     procedure TriggerDisconnect(DSConnectEventObject: TDSConnectEventObject);
+    procedure TriggerError(DSErrorEventObject: TDSErrorEventObject);
+  protected
+    procedure CreateServer; virtual;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -92,6 +106,7 @@ type
 
     property LogLevels: TLogLevels read FLogLevels write FLogLevels;
     property Server: TDSServer read FServer;
+    property ServerTransports: TServerTransports read FServerTransports write FServerTransports default [stTCPIP, stHTTP];
     property HttpTransport: TDSHTTPService read FHttpTransport;
     property TCPTRansport: TDSTCPServerTransport read FTCPTransport;
 
@@ -100,8 +115,6 @@ type
   end;
 
 implementation
-
-{$R *.dfm}
 
 {$REGION 'TDynamicServerClass'}
 
@@ -120,6 +133,22 @@ begin
   TServerContainer(Owner).RemoveResource(Self);
 
   inherited;
+end;
+
+procedure TDynamicServerClass.CreateInstance(
+  const CreateInstanceEventObject: TDSCreateInstanceEventObject);
+begin
+  inherited;
+
+  TServerContainer(Owner).DoCreateInstance(Self, CreateInstanceEventObject);
+end;
+
+procedure TDynamicServerClass.DestroyInstance(
+  const DestroyInstanceEventObject: TDSDestroyInstanceEventObject);
+begin
+  inherited;
+
+  TServerContainer(Owner).DoDestroyInstance(Self, DestroyInstanceEventObject);
 end;
 
 function TDynamicServerClass.GetDSClass: TDSClass;
@@ -144,17 +173,9 @@ begin
   FServer.AutoStart := False;
   FServer.OnConnect := TriggerConnect;
   FServer.OnDisconnect := TriggerDisconnect;
+  FServer.OnError := TriggerError;
 
-  // TCP/IP
-  FTCPTransport := TDSTCPServerTransport.Create(Self);
-  FTCPTransport.Port := 211;
-  FTCPTransport.Server := FServer;
-
-  // HTTP
-  FHttpTransport := TDSHTTPService.Create(Self);
-  FHttpTransport.DSPort := FTCPTransport.Port;
-  FHttpTransport.HttpPort := 8080;
-  FHttpTransport.Server := FServer;
+  FServerTransports := [stTCPIP, stHTTP];
 
   FResources := TDictionary<string, TDynamicServerClass>.Create;
 
@@ -183,6 +204,42 @@ end;
 procedure TServerContainer.AddResource(AResource: TDynamicServerClass);
 begin
 
+end;
+
+procedure TServerContainer.CreateServer;
+begin
+  // TCP/IP
+  if (stTCPIP in FServerTransports) then
+  begin
+    if Assigned(FTCPTransport) then
+      FreeAndNil(FTCPTransport);
+
+    FTCPTransport := TDSTCPServerTransport.Create(Self);
+    FTCPTransport.Port := 211;
+    FTCPTransport.Server := FServer;
+  end;
+
+  // HTTP
+  if (stHTTP in FServerTransports) then
+  begin
+    if Assigned(FHttpTransport) then
+      FreeAndNil(FHttpTransport);
+
+    FHttpTransport := TDSHTTPService.Create(Self);
+    FHttpTransport.DSPort := FTCPTransport.Port;
+    FHttpTransport.HttpPort := 8080;
+    FHttpTransport.Server := FServer;
+  end;
+end;
+
+procedure TServerContainer.DoCreateInstance(AResource: TDynamicServerClass;
+  const CreateInstanceEventObject: TDSCreateInstanceEventObject);
+begin
+end;
+
+procedure TServerContainer.DoDestroyInstance(AResource: TDynamicServerClass;
+  const DestroyInstanceEventObject: TDSDestroyInstanceEventObject);
+begin
 end;
 
 procedure TServerContainer.DoLog(const AMessage: string; const ALogLevel: TLogLevel);
@@ -269,6 +326,11 @@ begin
     DoLog('Client Disconnected > ID: %d, Peer: %s:%s, Protocol: %s', [
       LSession.ClientID, LSession.PeerIP, LSession.PeerPort, LSession.Protocol]);
   end;
+end;
+
+procedure TServerContainer.TriggerError(DSErrorEventObject: TDSErrorEventObject);
+begin
+
 end;
 
 {$ENDREGION}

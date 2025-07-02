@@ -18,7 +18,7 @@ uses
 
 type
   {$METHODINFO ON}
-  TUserResource = class(TServerResouece)
+  TUserResource = class(TServerResource)
   public
     function Login(AData: string): string;
     function Logout(AData: string): string;

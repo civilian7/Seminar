@@ -140,6 +140,7 @@
         <DCCReference Include="uResourceUser.pas"/>
         <DCCReference Include="uResourceSystem.pas"/>
         <DCCReference Include="..\Common\JsonDataObjects.pas"/>
+        <DCCReference Include="uDBPool.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

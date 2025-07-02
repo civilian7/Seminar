@@ -10,7 +10,8 @@ uses
   uPacket in '..\Common\uPacket.pas',
   uResourceUser in 'uResourceUser.pas',
   uResourceSystem in 'uResourceSystem.pas',
-  JsonDataObjects in '..\Common\JsonDataObjects.pas';
+  JsonDataObjects in '..\Common\JsonDataObjects.pas',
+  uDBPool in 'uDBPool.pas';
 
 {$R *.res}
 

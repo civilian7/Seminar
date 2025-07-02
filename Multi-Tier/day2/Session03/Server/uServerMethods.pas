@@ -6,6 +6,7 @@ interface
 uses
   System.SysUtils,
   System.Classes,
+  System.Generics.Collections,
   System.NetEncoding,
   System.Hash,
 
@@ -17,11 +18,12 @@ uses
 
   JsonDataObjects,
 
-  uPacket;
+  uPacket,
+  uDBPool;
 {$ENDREGION}
 
 type
-  TServerResouece = class(TComponent)
+  TServerResource = class(TComponent)
   private
     FData: TJSONObject;
     FErrorCode: Integer;
@@ -45,14 +47,24 @@ type
     property Params: TJSONObject read FParams;
   end;
 
+  TServerDBResource = class(TServerResource)
+  private
+    FDBConnection: TDBConnection;
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+
+    property DBConnection: TDBConnection read FDBConnection;
+  end;
+
 implementation
 
 uses
   uServerContainer;
 
-{ TServerResouece }
+{ TServerResource }
 
-constructor TServerResouece.Create(AOwner: TComponent);
+constructor TServerResource.Create(AOwner: TComponent);
 begin
   inherited;
 
@@ -61,7 +73,7 @@ begin
   FErrorMessage := '';
 end;
 
-destructor TServerResouece.Destroy;
+destructor TServerResource.Destroy;
 begin
   if Assigned(FParams) then
     FParams.Free;
@@ -69,17 +81,17 @@ begin
   inherited;
 end;
 
-function TServerResouece.GetErrorCode: Integer;
+function TServerResource.GetErrorCode: Integer;
 begin
   Result := FErrorCode;
 end;
 
-function TServerResouece.GetErrorMessage: string;
+function TServerResource.GetErrorMessage: string;
 begin
   Result := FErrorMessage
 end;
 
-procedure TServerResouece.MakeParams(const AData: string);
+procedure TServerResource.MakeParams(const AData: string);
 begin
   if (AData <> '') then
     FParams := TJSONObject.Parse(AData) as TJSONObject
@@ -87,7 +99,7 @@ begin
     FParams := TJSONObject.Create;
 end;
 
-function TServerResouece.MakeResult(const ACompact: Boolean): string;
+function TServerResource.MakeResult(const ACompact: Boolean): string;
 begin
   var LResult := TJSONObject.Create;
   try
@@ -101,14 +113,30 @@ begin
   end;
 end;
 
-procedure TServerResouece.SetErrorCode(const Value: Integer);
+procedure TServerResource.SetErrorCode(const Value: Integer);
 begin
   FErrorCode := Value;
 end;
 
-procedure TServerResouece.SetErrorMessage(const Value: string);
+procedure TServerResource.SetErrorMessage(const Value: string);
 begin
   FErrorMessage := Value;
+end;
+
+{ TServerDBResource }
+
+constructor TServerDBResource.Create(AOwner: TComponent);
+begin
+  inherited;
+
+  FDBConnection := TDatabase.GetConnection;
+end;
+
+destructor TServerDBResource.Destroy;
+begin
+  FDBConnection.Free;
+
+  inherited;
 end;
 
 end.
