@@ -52,6 +52,8 @@ end;
 
 function TUserResource.UserList(AData: string): string;
 begin
+  MakeParams(AData);
+
   var LQuery := DBConnection.GetQuery;
   try
     LQuery.SQL.Text := '''
@@ -59,7 +61,11 @@ begin
         *
       FROM
         USRS
+      WHERE
+        SEQ >= :SEQ
     ''';
+
+    LQuery.Params.ParamByName('SEQ').AsInteger := Params.I['seq'];
     LQuery.Open;
 
     Data.O['dataset'] := LQuery.ToJSON;

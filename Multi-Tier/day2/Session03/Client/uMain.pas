@@ -123,6 +123,8 @@ var
   LResponse: IResponse;
 begin
   LRequest := TRequest.Create('User', 'UserList');
+  LRequest.Params.I['seq'] := 15;
+
   ClientModule.Execute(LRequest, LResponse,
     procedure(AResponse: IResponse)
     begin
