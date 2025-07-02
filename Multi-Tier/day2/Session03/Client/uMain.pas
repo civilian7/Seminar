@@ -9,12 +9,16 @@ uses
   System.SysUtils,
   System.Variants,
   System.Classes,
+  System.NetEncoding,
 
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
   Vcl.Dialogs,
   Vcl.StdCtrls,
+  Vcl.ExtCtrls,
+  Vcl.Imaging.pngimage,
+  Vcl.Imaging.jpeg,
 
   uPacket,
   uClient;
@@ -28,12 +32,15 @@ type
     btnConnect: TButton;
     Button1: TButton;
     Button2: TButton;
+    Image1: TImage;
+    Button3: TButton;
     procedure btnConnectClick(Sender: TObject);
     procedure btnDisconnectClick(Sender: TObject);
     procedure btnLoginClick(Sender: TObject);
     procedure btnLogOutClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     procedure Log(const AMessage: string); overload;
     procedure Log(const AMessage: string; const AParams: array of const); overload;
@@ -128,6 +135,29 @@ begin
   ClientModule.Execute(LRequest, LResponse,
     procedure(AResponse: IResponse)
     begin
+      Log(AResponse.ToString);
+    end
+  );
+end;
+
+procedure TfrmMain.Button3Click(Sender: TObject);
+var
+  LRequest: IRequest;
+  LResponse: IResponse;
+begin
+  LRequest := TRequest.Create('User', 'GetPicture');
+  LRequest.Params.S['usr_id'] := 'user01';
+
+  ClientModule.Execute(LRequest, LResponse,
+    procedure(AResponse: IResponse)
+    begin
+      var LBuffer := TNetEncoding.Base64String.DecodeStringToBytes(AResponse.Content.S['image']);
+      var LStream := TBytesStream.Create(LBuffer);
+      try
+        Image1.Picture.LoadFromStream(LStream);
+      finally
+        LStream.Free;
+      end;
       Log(AResponse.ToString);
     end
   );

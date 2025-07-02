@@ -8,6 +8,7 @@ uses
   System.Classes,
   System.NetEncoding,
   System.Hash,
+  System.IOUtils,
 
   Datasnap.DSServer,
   Datasnap.DSAuth,
@@ -23,6 +24,7 @@ type
     function Login(AData: string): string;
     function Logout(AData: string): string;
     function UserList(AData: string): string;
+    function GetPicture(AData: string): string;
   end;
   {$METHODINFO OFF}
 
@@ -32,6 +34,19 @@ uses
   uServerContainer;
 
 { TLoginResource }
+
+function TUserResource.GetPicture(AData: string): string;
+begin
+  MakeParams(AData);
+
+  var LImageFile := ExtractFilePath(ParamStr(0)) + 'Images\sunny.jpeg';
+  var LBuffer := TFile.ReadAllBytes(LImageFile);
+  var LEncode := TNetEncoding.Base64String.EncodeBytesToString(LBuffer);
+
+  Data.S['image'] := LEncode;
+
+  Result := MakeResult;
+end;
 
 function TUserResource.Login(AData: string): string;
 begin
