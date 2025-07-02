@@ -7,8 +7,7 @@ uses
   System.SysUtils,
   System.Classes,
   System.Generics.Collections,
-  System.NetEncoding,
-  System.JSON,
+  System.IniFiles,
 
   Data.DB,
 
@@ -23,13 +22,15 @@ uses
   FireDAC.DApt,
   FireDAC.Phys.MySQL,
   FireDAC.Comp.Client,
-  FireDAC.Comp.Script;
+  FireDAC.Comp.Script,
+
+  JsonDataObjects;
 {$ENDREGION}
 
 type
   TDBQuery = class(TFDQuery)
   public
-    function  ToJSON: string;
+    function  ToJSON: TJSONObject;
   end;
 
   TDBConnection = class(TFDConnection)
@@ -46,48 +47,36 @@ type
     class constructor Create;
     class destructor Destroy;
   public
-    class function  GetConnection: TDBConnection; static;
+    class function GetConnection: TDBConnection; static; static;
+    class function LoadFromFile(const AFileName: string): TStrings; static;
   end;
 
 implementation
 
 {$REGION 'TDBQuery'}
 
-function TDBQuery.ToJSON: string;
+function TDBQuery.ToJSON: TJSONObject;
 begin
-  var LDatas := TJSONArray.Create;
-  try
-    while not EOF do
+  Result := TJSONObject.Create;
+  First;
+  while not eof do
+  begin
+    var LRecord := TJSONObject.Create;
+    for var i := 0 to Fields.Count-1 do
     begin
-      var LData := TJSONObject.Create;
-      for var i := 0 to Fields.Count-1 do
-      begin
-        var LFieldName := LowerCase(Fields[i].FieldName);
-        case Fields[i].DataType of
-        ftBoolean:
-          LData.AddPair(LFieldName, Fields[i].AsBoolean);
-        ftCurrency:
-          LData.AddPair(LFieldName, Fields[i].AsCurrency);
-        ftDateTime:
-          LData.AddPair(LFieldName, Fields[i].AsDateTime);
-        ftFloat:
-          LData.AddPair(LFieldName, Fields[i].AsFloat);
-        ftInteger:
-          LData.AddPair(LFieldName, Fields[i].AsInteger);
-        ftLargeint:
-          LData.AddPair(LFieldName, Fields[i].AsLargeInt);
-        ftString, ftWideString:
-          LData.AddPair(LFieldName, Fields[i].AsString);
-        end;
-      end;
+      var LFieldName := Fields[i].FieldName;
 
-      LDatas.Add(LData);
-      Next;
+      case Fields[i].DataType of
+      ftInteger:
+        LRecord.I[LFieldName] := Fields[i].AsInteger;
+      ftString, ftWideString:
+        LRecord.S[LfieldName] := Fields[i].AsString;
+      end;
     end;
 
-    Result := LDatas.ToJSON;
-  finally
-    LDatas.Free;
+    Result.A['dataset'].AddObject(LRecord);
+
+    Next;
   end;
 end;
 
@@ -139,6 +128,21 @@ begin
   Result := TDBConnection.Create(nil);
   Result.ConnectionDefName := CONNECTION_NAME;
   Result.Connected := True;
+end;
+
+class function TDatabase.LoadFromFile(const AFileName: string): TStrings;
+begin
+  Result := TStringList.Create;
+  var LIniFile := TIniFile.Create(AFileName);
+  var LSection := TStringList.Create;
+  try
+    with LIniFile do
+    begin
+      ReadSection('settings', Result);
+    end;
+  finally
+    LIniFile.Free;
+  end;
 end;
 
 {$ENDREGION}

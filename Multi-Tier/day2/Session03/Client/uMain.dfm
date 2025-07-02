@@ -13,7 +13,7 @@ object frmMain: TfrmMain
   TextHeight = 15
   object btnLogin: TButton
     Left = 232
-    Top = 61
+    Top = 21
     Width = 99
     Height = 25
     Caption = #47196#44536#51064
@@ -22,7 +22,7 @@ object frmMain: TfrmMain
   end
   object btnLogOut: TButton
     Left = 337
-    Top = 61
+    Top = 21
     Width = 96
     Height = 25
     Caption = #47196#44536#50500#50883
@@ -39,7 +39,7 @@ object frmMain: TfrmMain
   end
   object btnDisconnect: TButton
     Left = 121
-    Top = 61
+    Top = 21
     Width = 96
     Height = 25
     Caption = 'Disconnect'
@@ -48,7 +48,7 @@ object frmMain: TfrmMain
   end
   object btnConnect: TButton
     Left = 16
-    Top = 61
+    Top = 21
     Width = 99
     Height = 25
     Caption = 'Connect'
@@ -57,11 +57,20 @@ object frmMain: TfrmMain
   end
   object Button1: TButton
     Left = 440
-    Top = 61
+    Top = 21
     Width = 75
     Height = 25
     Caption = #49436#48260#49884#44036
     TabOrder = 5
     OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 16
+    Top = 56
+    Width = 99
+    Height = 25
+    Caption = #49324#50857#51088' '#47532#49828#53944
+    TabOrder = 6
+    OnClick = Button2Click
   end
 end

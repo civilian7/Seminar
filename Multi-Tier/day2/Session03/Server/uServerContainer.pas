@@ -284,6 +284,8 @@ end;
 
 procedure TServerContainer.Start(const AProc: TProc<Boolean>);
 begin
+  CreateServer();
+
   FServer.Start;
   if Assigned(AProc) then
     AProc(FServer.Started);

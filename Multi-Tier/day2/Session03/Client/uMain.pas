@@ -27,11 +27,13 @@ type
     btnDisconnect: TButton;
     btnConnect: TButton;
     Button1: TButton;
+    Button2: TButton;
     procedure btnConnectClick(Sender: TObject);
     procedure btnDisconnectClick(Sender: TObject);
     procedure btnLoginClick(Sender: TObject);
     procedure btnLogOutClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     procedure Log(const AMessage: string); overload;
     procedure Log(const AMessage: string; const AParams: array of const); overload;
@@ -111,6 +113,20 @@ begin
     begin
       var LDateTime: TDateTime := AResponse.Content.D['servertime'];
       Log('서버시간: %s', [FormatDateTime('yyyy-mm-dd hh:nn:ss.zzz', LDateTime)]);
+    end
+  );
+end;
+
+procedure TfrmMain.Button2Click(Sender: TObject);
+var
+  LRequest: IRequest;
+  LResponse: IResponse;
+begin
+  LRequest := TRequest.Create('User', 'UserList');
+  ClientModule.Execute(LRequest, LResponse,
+    procedure(AResponse: IResponse)
+    begin
+      Log(AResponse.ToString);
     end
   );
 end;
