@@ -89,7 +89,7 @@ end;
 
 procedure TfrmMain.btnLoginClick(Sender: TObject);
 begin
-  ClientModule.Login('user01', '1234',
+  ClientModule.Login('user011', 'P@55w0rd!@',
     procedure(AResponse: IResponse)
     begin
       Log(AResponse.ToString);

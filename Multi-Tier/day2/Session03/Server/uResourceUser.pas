@@ -37,8 +37,47 @@ function TUserResource.Login(AData: string): string;
 begin
   MakeParams(AData);
 
-  Data.S['username'] := '홍길동';
-  Data.I['level'] := 90;
+  var LQuery := DBConnection.GetQuery;
+  try
+    LQuery.SQL.Text := '''
+      SELECT
+        USR_ID
+        , USR_PW
+        , USR_NM
+        , USR_LVL
+      FROM
+        USRS
+      WHERE
+        USR_ID = :USR_ID
+    ''';
+
+    LQuery.Params.ParamByName('USR_ID').AsString := Params.S['usr_id'];
+    LQuery.Open;
+
+    if LQuery.RecordCount = 0 then
+    begin
+      // 사용자 아이디 없음
+      ErrorCode := 1;
+      ErrorMessage := '사용자 아이디를 찾을 수 없습니다';
+    end
+    else
+    begin
+      if SameText(LQuery.FieldByName('USR_PW').AsString, Params.S['usr_pw']) then
+      begin
+        // 로그인 정상
+        Data.S['usr_nm'] := LQuery.FieldByName('USR_NM').AsString;
+        Data.I['level'] := LQuery.FieldByName('USR_LVL').AsInteger;
+      end
+      else
+      begin
+        // 비번 불일치
+        ErrorCode := 2;
+        ErrorMessage := '비밀번호가 일치하지 않습니다';
+      end;
+    end;
+  finally
+    LQuery.Free;
+  end;
 
   Result := MakeResult;
 end;

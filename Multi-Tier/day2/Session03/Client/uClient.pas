@@ -260,8 +260,8 @@ var
 begin
   LRequest := TRequest.Create('User', 'Login');
 
-  LRequest.Params.S['id'] := FUserInfo.UserID;
-  LRequest.Params.S['password'] := THashSHA2.GetHashString(FUserInfo.Password);
+  LRequest.Params.S['usr_id'] := FUserInfo.UserID;
+  LRequest.Params.S['usr_pw'] := THashSHA2.GetHashString(FUserInfo.Password);
 
   Client.Call(LRequest, LResponse);
 
