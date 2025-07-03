@@ -8,7 +8,8 @@ uses
   uServerMethods in 'uServerMethods.pas',
   uServerContainer in 'uServerContainer.pas' {ServerContainer: TDataModule},
   uPacket in '..\Common\uPacket.pas',
-  uResourceUser in 'uResourceUser.pas';
+  uResourceUser in 'uResourceUser.pas',
+  uResourceSystem in 'uResourceSystem.pas';
 
 {$R *.res}
 

@@ -203,6 +203,9 @@ begin
     TotalChunks := Ceil(FileStream.Size / CHUNK_SIZE);
     ChunkIndex := 0;
 
+    ProgressBar1.Max := TotalChunks;
+    ProgressBar1.Position := 0;
+
     while FileStream.Position < FileStream.Size do
     begin
       ChunkStream := TMemoryStream.Create;
@@ -220,6 +223,8 @@ begin
         );
 
         Inc(ChunkIndex);
+        ProgressBar1.Position := ChunkIndex;
+        Application.ProcessMessages;
       finally
         ChunkStream.Free;
       end;

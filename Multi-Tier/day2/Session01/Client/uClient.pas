@@ -259,7 +259,6 @@ var
   LResponse: IResponse;
 begin
   LRequest := TRequest.Create('User', 'Login');
-
   LRequest.Params.AddPair('id', FUserInfo.UserID);
   LRequest.Params.AddPair('password', THashSHA2.GetHashString(FUserInfo.Password));
 

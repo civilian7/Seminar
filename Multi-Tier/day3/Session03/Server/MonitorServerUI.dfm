@@ -13,7 +13,6 @@ object CMServerForm: TCMServerForm
   Font.Height = -12
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poDesigned
   OnActivate = FormActivate
   OnClose = FormClose
@@ -21,7 +20,6 @@ object CMServerForm: TCMServerForm
   DesignSize = (
     487
     249)
-  PixelsPerInch = 96
   TextHeight = 14
   object Label1: TLabel
     Left = 8
@@ -97,7 +95,7 @@ object CMServerForm: TCMServerForm
   end
   object SessionIdList: TListBox
     Left = 279
-    Top = 56
+    Top = 59
     Width = 200
     Height = 152
     Anchors = [akTop, akRight, akBottom]
@@ -163,8 +161,8 @@ object CMServerForm: TCMServerForm
     OnClick = thrashUpdateClick
   end
   object KeepAlivePopup: TPopupMenu
-    Left = 224
-    Top = 96
+    Left = 168
+    Top = 104
     object EnableKAItem: TMenuItem
       Caption = 'Enable keep-alive'
       OnClick = EnableKAItemClick
@@ -180,5 +178,12 @@ object CMServerForm: TCMServerForm
       Caption = 'Close Connection'
       OnClick = closeConnItemClick
     end
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 5000
+    OnTimer = Timer1Timer
+    Left = 72
+    Top = 104
   end
 end

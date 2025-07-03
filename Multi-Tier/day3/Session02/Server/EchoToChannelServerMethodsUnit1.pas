@@ -21,10 +21,9 @@ type
   TServerMethods1 = class(TComponent)
   private
     FDSServer: TDSServer;
-    { Private declarations }
   public
-    { Public declarations }
     constructor Create(ADSServer: TDSServer); reintroduce;
+
     function EchoStringToChannel(const AChannelName, AValue: string): Boolean;
   end;
 {$METHODINFO OFF}
@@ -41,8 +40,7 @@ end;
 
 function TServerMethods1.EchoStringToChannel(const AChannelName, AValue: string): Boolean;
 begin
-  Result := FDSServer.BroadcastMessage(AChannelName,
-    TJSonString.Create(AValue));
+  Result := FDSServer.BroadcastMessage(AChannelName, TJSonString.Create(AValue));
 end;
 
 end.

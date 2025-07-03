@@ -1,15 +1,15 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{F96F1131-2888-4586-A75A-B349ADA77A5D}</ProjectGuid>
+        <ProjectGuid>{18DF3FA4-439D-40DF-838A-997B57184391}</ProjectGuid>
         <ProjectVersion>20.3</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
-        <ProjectName Condition="'$(ProjectName)'==''">Server</ProjectName>
+        <ProjectName Condition="'$(ProjectName)'==''">Project3</ProjectName>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Application</AppType>
-        <MainSource>Server.dpr</MainSource>
+        <MainSource>Project3.dpr</MainSource>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -60,7 +60,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
-        <DCC_ExeOutput>..\BIN</DCC_ExeOutput>
+        <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
         <DCC_S>false</DCC_S>
@@ -68,10 +68,9 @@
         <DCC_K>false</DCC_K>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
-        <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
-        <SanitizedProjectName>Server</SanitizedProjectName>
-        <VerInfo_Locale>1042</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
+        <SanitizedProjectName>Project3</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_UsePackage>vclwinx;DataSnapServer;fmx;FBC.Report.Indy;vclie;DbxCommonDriver;bindengine;IndyIPCommon;VCLRESTComponents;DBXMSSQLDriver;FireDACCommonODBC;emsclient;DX.Grid;appanalytics;IndyProtocols;vclx;Skia.Package.RTL;FBC.UniDAC.SQLite3;dbxcds;vcledge;FmxTeeUI;DX.OrgChart;FBC.UniDAC.ODBC;DBXFirebirdDriver;FBC.Graphics32;FBC.Report.INet;FireDACSqliteDriver;DbxClientDriver;DX.Print;soapmidas;TeeUI;DX.Sheet;dbexpress;FBC.WPTools;inet;DX.Cloud;FBC.Script.FD;vcltouch;FBC.FNCVcl;FireDACDBXDriver;fmxdae;CustomIPTransport;FireDACMSSQLDriver;FBC.Report.ADO;FBC.Report.Core;FBC.WebView;DX.Data.FD;FBC.WebView.Design;IndySystem;DX.Gantt;FBC.UniDAC.Postgre;FBC.Script;FBC.UniVCL;DX.PDFViewer;FBC.Report.Export;FBC.Report.Chart;vclFireDAC;FireDACCommon;DataSnapServerMidas;FireDACODBCDriver;emsserverresource;FBC.UniDAC;bindcompdbx;rtl;FireDACMySQLDriver;FBC.VirtualTrees;FBC.ZInt;FBC.UI.Vcl;DBXSqliteDriver;FBC.ChromeTabs;TMSVCLUIPackPkgDXE15;FBC.DACVCL;DBXSybaseASEDriver;FBC.Report.UniDAC;DX.Bar;vclimg;DataSnapFireDAC;inetdbxpress;FireDAC;xmlrtl;FBC.Report.Engine;dsnap;DX.EMF.ADO;FBC.UniDAC.IB;FireDACDb2Driver;DBXOracleDriver;DX.Print.Tee;DBXInformixDriver;fmxobj;bindcompvclsmp;DataSnapNativeClient;FBC.WX;DatasnapConnectorsFreePascal;DX.TreeList;FBC.UniDAC.Acess;FBC.ZPL;emshosting;FBC.UniDAC.SQLServer;FireDACCommonDriver;DX.Chart;FBC.Report.PDF;IndyIPClient;FBC.Styles;DX.FlowChart;DX.Edit;bindcompvclwinx;DX.Scheduler;emsedge;bindcompfmx;TMSVCLUIPackPkgExDXE15;FBC.Script.Chart;inetdb;DX.VertGrid;DX.Data.ADO;FireDACASADriver;FBC.DAC.Query;Tee;DX.Controls;FBC.Image;vclactnband;TMSVCLUIPackPkgXlsDXE15;fmxFireDAC;FBC.HTMLViewer;FireDACInfxDriver;DBXMySQLDriver;VclSmp;DataSnapCommon;fmxase;TMSVCLUIPackPkgWizDXE15;DBXOdbcDriver;dbrtl;FireDACOracleDriver;Skia.Package.FMX;TeeDB;FBC.TextEditor;FireDACMSAccDriver;FBC.Report.I18N;DX.Data;DataSnapIndy10ServerTransport;DataSnapConnectors;vcldsnap;DBXInterBaseDriver;FireDACMongoDBDriver;FBC.Script.ADO;FireDACTDataDriver;FBC.UniDAC.Mongo;DX.PivotGrid;Skia.Package.VCL;vcldb;FBC.Image32;FBC.UniDAC.MySQL;FBC.UniDAC.TDS;FBC.EhLib;FBC.Report.HTML;bindcomp;inetstn;IndyCore;RESTBackendComponents;FBC.Edge;FireDACADSDriver;RESTComponents;IndyIPServer;vcl;dsnapxml;adortl;dsnapcon;DataSnapClient;DataSnapProviderClient;DX.EMF.FD;FBC.Script.UniDAC;FBC.UniDAC.Oracle;FBC.FNCCore;DBXDb2Driver;DX.EMF;FBC.Report.Server;emsclientfiredac;FireDACPgDriver;FireDACDSDriver;FBC.Report.FD;tethering;bindcompvcl;CloudService;DBXSybaseASADriver;DX.Base;FB.Raize;FMXTee;DX.DBTree;FBC.UniDAC.Excel;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
@@ -104,8 +103,6 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -126,19 +123,10 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="uServer.pas">
-            <Form>frmMain</Form>
+        <DCCReference Include="Unit4.pas">
+            <Form>Form4</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="uServerMethods.pas"/>
-        <DCCReference Include="uServerContainer.pas">
-            <Form>ServerContainer</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\Common\uPacket.pas"/>
-        <DCCReference Include="uResourceUser.pas"/>
-        <DCCReference Include="uResourceSystem.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -157,16 +145,13 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">Server.dpr</Source>
+                    <Source Name="MainSource">Project3.dpr</Source>
                 </Source>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="D:\SmartWorks\LIB\BPL\Win32\Debug\Pyahu.WelcomePageList.bpl">File D:\SmartWorks\LIB\BPL\Win32\Debug\Pyahu.WelcomePageList.bpl not found</Excluded_Packages>
-                </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="5">
-                <DeployFile LocalName="..\BIN\Server.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win32\Debug\Project3.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>Server.exe</RemoteName>
+                        <RemoteName>Project3.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

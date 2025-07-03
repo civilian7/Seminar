@@ -22,6 +22,7 @@ type
     constructor Create(ADBXConnection: TDBXConnection); overload;
     constructor Create(ADBXConnection: TDBXConnection; AInstanceOwner: Boolean); overload;
     destructor Destroy; override;
+
     function EchoStringToChannel(AChannelName: string; AValue: string): Boolean;
   end;
 

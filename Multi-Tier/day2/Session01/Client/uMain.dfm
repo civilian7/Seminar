@@ -62,4 +62,13 @@ object frmMain: TfrmMain
     TabOrder = 5
     OnClick = btnConnectClick
   end
+  object Button1: TButton
+    Left = 440
+    Top = 64
+    Width = 75
+    Height = 25
+    Caption = #49436#48260#49884#44036
+    TabOrder = 6
+    OnClick = Button1Click
+  end
 end

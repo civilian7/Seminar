@@ -86,7 +86,6 @@ object Form4: TForm4
     Margins.Bottom = 2
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 4
-    ExplicitWidth = 350
   end
   object ButtonClearLog: TButton
     Left = 300
@@ -101,7 +100,6 @@ object Form4: TForm4
     Caption = 'Clear'
     TabOrder = 5
     OnClick = ButtonClearLogClick
-    ExplicitLeft = 299
   end
   object ButtonEcho: TButton
     Left = 299
@@ -134,12 +132,12 @@ object Form4: TForm4
     CommunicationProtocol = 'tcp/ip'
     ChannelName = 'Echo'
     ManagerId = '14293.185643.93700'
-    Left = 176
-    Top = 201
+    Left = 216
+    Top = 185
   end
   object ApplicationEvents1: TApplicationEvents
     OnIdle = ApplicationEvents1Idle
-    Left = 40
-    Top = 201
+    Left = 48
+    Top = 185
   end
 end

@@ -27,10 +27,12 @@ type
     eLogs: TMemo;
     btnDisconnect: TButton;
     btnConnect: TButton;
+    Button1: TButton;
     procedure btnConnectClick(Sender: TObject);
     procedure btnDisconnectClick(Sender: TObject);
     procedure btnLoginClick(Sender: TObject);
     procedure btnLogOutClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     procedure Log(const AMessage: string); overload;
     procedure Log(const AMessage: string; const AParams: array of const); overload;
@@ -97,6 +99,17 @@ end;
 procedure TfrmMain.btnLogOutClick(Sender: TObject);
 begin
   ClientModule.Logout;
+end;
+
+procedure TfrmMain.Button1Click(Sender: TObject);
+var
+  LRequest: IRequest;
+  LResponse: IResponse;
+begin
+  LRequest := TRequest.Create('System', 'GetServerTime');
+  ClientModule.Client.Call(LRequest, LResponse);
+
+  Log(LResponse.ToString);
 end;
 
 procedure TfrmMain.Log(const AMessage: string; const AParams: array of const);

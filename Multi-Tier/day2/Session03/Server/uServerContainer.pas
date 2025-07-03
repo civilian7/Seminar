@@ -7,6 +7,7 @@ uses
   System.SysUtils,
   System.Classes,
   System.Generics.Collections,
+  System.DateUtils,
 
   Datasnap.DSTCPServerTransport,
   Datasnap.DSServer,
@@ -58,6 +59,8 @@ type
     PeerIP: string;
     PeerPort: string;
     Protocol: string;
+    ConnectedAt: TDateTime;
+    Debugging: Boolean;
   end;
 
   TLogEvent = procedure(Sender: TObject; const AMessage: string; const ALogLevel: TLogLevel = llDebug) of object;
@@ -307,6 +310,7 @@ begin
   LSession.PeerIP := DSConnectEventObject.ChannelInfo.ClientInfo.IpAddress;
   LSession.PeerPort := DSConnectEventObject.ChannelInfo.ClientInfo.ClientPort;
   LSession.Protocol := DSConnectEventObject.ChannelInfo.ClientInfo.Protocol;
+  LSession.ConnectedAt := Now();
 
   TDSSessionManager.GetThreadSession.PutObject('session', LSession);
 
@@ -325,6 +329,8 @@ begin
     LSession.PeerPort := DSConnectEventObject.ChannelInfo.ClientInfo.ClientPort;
     LSession.Protocol := DSConnectEventObject.ChannelInfo.ClientInfo.Protocol;
 
+    var LWorking := MilliSecondsBetween(Now, LSession.ConnectedAt);
+    DoLog('Working Time(ms): %d', [LWorking]);
     DoLog('Client Disconnected > ID: %d, Peer: %s:%s, Protocol: %s', [
       LSession.ClientID, LSession.PeerIP, LSession.PeerPort, LSession.Protocol]);
   end;

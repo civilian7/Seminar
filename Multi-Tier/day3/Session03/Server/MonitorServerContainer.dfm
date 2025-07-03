@@ -1,9 +1,8 @@
 object CMServerContainer: TCMServerContainer
-  OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Height = 233
-  Width = 262
+  Height = 318
+  Width = 438
   object CMServer: TDSServer
     Left = 40
     Top = 11
@@ -14,7 +13,7 @@ object CMServerContainer: TCMServerContainer
     Filters = <>
     AuthenticationManager = CMAuthManager
     Left = 40
-    Top = 73
+    Top = 105
   end
   object CMServerClass: TDSServerClass
     OnGetClass = CMServerClassGetClass
@@ -25,16 +24,16 @@ object CMServerContainer: TCMServerContainer
   object CMAuthManager: TDSAuthenticationManager
     OnUserAuthorize = CMAuthManagerUserAuthorize
     Roles = <>
-    Left = 168
-    Top = 88
+    Left = 160
+    Top = 192
   end
   object CMHTTPService: TDSHTTPService
+    HttpPort = 8089
     Server = CMServer
     DSPort = 0
     Filters = <>
     SessionTimeout = 0
-    HttpPort = 8089
     Left = 40
-    Top = 143
+    Top = 191
   end
 end

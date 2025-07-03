@@ -18,7 +18,7 @@ uses
   DSTCPServerTransport,
   DSHTTPCommon, DSHTTP,
   DSServer, DSCommonServer, DSAuth,
-  Generics.Collections, IPPeerServer, IndyPeerImpl;
+  Generics.Collections, IPPeerServer, IndyPeerImpl, DbxCompressionFilter;
 
 type
   TCMServerContainer = class(TDataModule)

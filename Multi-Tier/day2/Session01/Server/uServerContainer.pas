@@ -27,7 +27,8 @@ type
     function  GetDSClass: TDSClass; override;
     procedure Preparing(const PrepareEventObject: TDSPrepareEventObject); override;
   public
-    constructor Create(AOwner: TComponent; AServer: TDSServer; AClass: TPersistentClass; const ALifeCycle: string = TDSLifeCycle.Invocation); reintroduce; overload;
+    constructor Create(AOwner: TComponent; AServer: TDSServer;
+      AClass: TPersistentClass; const ALifeCycle: string = TDSLifeCycle.Invocation); reintroduce; overload;
     destructor Destroy; override;
 
     property PersistentClass: TPersistentClass read FPersistentClass;

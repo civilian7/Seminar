@@ -1,24 +1,29 @@
-//---------------------------------------------------------------------------
-
-// This software is Copyright (c) 2015 Embarcadero Technologies, Inc.
-// You may only use this software if you are an authorized licensee
-// of an Embarcadero developer tools product.
-// This software is considered a Redistributable as defined under
-// the software license agreement that comes with the Embarcadero Products
-// and is subject to that software license agreement.
-
-//---------------------------------------------------------------------------
-
 unit MonitorServerUI;
 
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls,
+  Windows,
+  Messages,
+
+  SysUtils,
+  Variants,
+  Classes,
+  Generics.Collections,
+
+  Graphics,
+  Controls,
+  Forms,
+  Dialogs,
+  StdCtrls,
+  Menus,
+  ExtCtrls,
   DSTCPServerTransport,
-  IdTCPConnection, IndyPeerImpl, IPPeerServer, IPPeerClient,
-  Generics.Collections, Menus, ExtCtrls;
+
+  IdTCPConnection,
+  IndyPeerImpl,
+  IPPeerServer,
+  IPPeerClient;
 
 type
   TCMServerForm = class(TForm)
@@ -41,6 +46,7 @@ type
     N1: TMenuItem;
     closeConnItem: TMenuItem;
     Label6: TLabel;
+    Timer1: TTimer;
     procedure FormActivate(Sender: TObject);
     procedure ConnectionsListClick(Sender: TObject);
     procedure SessionIdListClick(Sender: TObject);
@@ -56,8 +62,10 @@ type
     procedure closeConnItemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Timer1Timer(Sender: TObject);
   private
     FConnections: TObjectDictionary<TIdTCPConnection,TDSTCPChannel>;
+
     procedure CMServerTransportConnectEvent(Event: TDSTCPConnectEventObject);
     procedure CMServerTransportDisconnectEvent(Event: TDSTCPDisconnectEventObject);
     procedure AddConnectionToList(Conn: TIdTCPConnection; Channel: TDSTCPChannel);
@@ -79,7 +87,10 @@ var
 
 implementation
 
-uses MonitorServerContainer, DSSession, Winapi.Winsock;
+uses
+  MonitorServerContainer,
+  DSSession,
+  Winapi.Winsock;
 
 {$R *.dfm}
 
@@ -140,14 +151,10 @@ begin
 
   FConnections := TObjectDictionary<TIdTCPConnection,TDSTCPChannel>.Create;
 
-  //Register an event to be notified when TCP connections are created
+  // TCP 트랜스포트의 OnConnect, OnDisconnect 이벤트에 연결한다
   CMServerContainer.CMServerTransport.OnConnect := CMServerTransportConnectEvent;
-
-  //Register an event to be notified when TCP connections are closed.
   CMServerContainer.CMServerTransport.OnDisconnect := CMServerTransportDisconnectEvent;
 
-  //Add a listener to be notified when sessions are established or are ended.
-  //this is used to update the list box with session IDs in it.
   AddSessionListener;
 end;
 
@@ -160,6 +167,7 @@ end;
 procedure TCMServerForm.FormCreate(Sender: TObject);
 begin
   Caption := Caption + ' - ' + GetIPAddress;
+  Timer1.Enabled := True;
 end;
 
 function TCMServerForm.GetSelectedChannel(Conn: TIdTCPConnection): TDSTCPChannel;
@@ -221,14 +229,11 @@ begin
   try
     PairEnum := FConnections.GetEnumerator;
 
-    //Iterate over each connection looking for the connection that has a matching channel
-    //with the specified SessionId.
     while PairEnum.MoveNext do
     begin
       Conn := PairEnum.Current.Key;
       Channel := PairEnum.Current.Value;
 
-      //check the connection's channel's session Id.
       if (Channel <> nil) and (Channel.SessionId <> EmptyStr) then
       begin
         if Channel.SessionId = SessionId then
@@ -261,9 +266,6 @@ begin
   if FConnections = nil then
     Exit;
 
-  //This is called when a TCP conneciton is established. The connection and its corresponding
-  //channel are added to the FConnections dictionary (the connection as the key) and then the
-  //Connection list box is updated.
   System.TMonitor.Enter(FConnections);
   try
     FConnections.Add(TIdTCPConnection(Event.Connection), Event.Channel);
@@ -271,12 +273,10 @@ begin
     System.TMonitor.Exit(FConnections);
   end;
 
-  //Update the connection list to include the new connection and its channel.
-  AddConnectionToList(TIdTCPConnection(Event.Connection), Event.Channel);
-
-  //If keep-alive is in use, then enable Keep-alive for this new connection.
-  if useKeepAliveCheck.Checked and (KAIdleMS.Text <> EmptyStr)then
-    Event.Channel.EnableKeepAlive(StrToInt(KAIdleMS.Text));
+//  AddConnectionToList(TIdTCPConnection(Event.Connection), Event.Channel);
+//
+//  if useKeepAliveCheck.Checked and (KAIdleMS.Text <> EmptyStr)then
+//    Event.Channel.EnableKeepAlive(StrToInt(KAIdleMS.Text));
 end;
 
 procedure TCMServerForm.CMServerTransportDisconnectEvent(Event: TDSTCPDisconnectEventObject);
@@ -290,22 +290,28 @@ begin
   System.TMonitor.Enter(FConnections);
   try
     FConnections.Remove(TIdTCPConnection(Event.Connection));
-
-    TThread.Synchronize(nil, procedure
-      begin
-        //update the connection list box, removing the connection that was just closed
-        Index := ConnectionsList.Items.IndexOfObject(Event.Connection);
-        if Index > -1 then
-        begin
-          ConnectionsList.Items.Delete(Index);
-
-          if ConnectionsList.SelCount = 0 then
-            SessionIdList.ClearSelection;
-        end;
-      end);
   finally
     System.TMonitor.Exit(FConnections);
   end;
+
+{
+  // TThread.Queue(
+  TThread.Synchronize(
+    nil,
+    procedure
+    begin
+      //update the connection list box, removing the connection that was just closed
+      Index := ConnectionsList.Items.IndexOfObject(Event.Connection);
+      if Index > -1 then
+      begin
+        ConnectionsList.Items.Delete(Index);
+
+        if ConnectionsList.SelCount = 0 then
+          SessionIdList.ClearSelection;
+      end;
+    end
+  );
+}
 end;
 
 procedure TCMServerForm.ConnectionsListClick(Sender: TObject);
@@ -409,9 +415,6 @@ end;
 
 procedure TCMServerForm.updateUpdateButton;
 begin
-  //enable or disable the update button, based on the values held in the text fields.
-  //Only enabling the update button if the fields contain valid values and the values are different
-  //than the ones already in use by the authentication manager.
   if (thrashCountEdit.Text <> EmptyStr) and (maxRequestsEdit.Text <> EmptyStr) then
   begin
     thrashUpdate.Enabled := (CMServerContainer.ThrashingWindow <> StrToInt(thrashCountEdit.Text)) or
@@ -526,6 +529,29 @@ begin
   end
   else
     ConnectionsList.Items.AddObject('Channel is missing proper ClientInfo.', Conn);
+end;
+
+procedure TCMServerForm.Timer1Timer(Sender: TObject);
+var
+  LConnections: TArray<TPair<TIdTCPConnection,TDSTCPChannel>>;
+begin
+  System.TMonitor.Enter(FConnections);
+  try
+    LConnections := FConnections.ToArray;
+  finally
+    System.TMonitor.Exit(FConnections);
+  end;
+
+  ConnectionsList.Items.BeginUpdate;
+  try
+    ConnectionsList.Clear;
+    for var LConnection in LConnections do
+    begin
+      AddConnectionToList(LConnection.Key, LConnection.Value);
+    end;
+  finally
+    ConnectionsList.Items.EndUpdate;
+  end;
 end;
 
 procedure TCMServerForm.useKeepAliveCheckClick(Sender: TObject);

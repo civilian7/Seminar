@@ -39,13 +39,11 @@ type
     procedure ApplicationEvents1Idle(Sender: TObject; var Done: Boolean);
     procedure FormCreate(Sender: TObject);
   private
-    { Private declarations }
     FCallbackChannelRegistered: Boolean;
-    function GetCallbackName: string;
+    function  GetCallbackName: string;
     procedure UnregisterCallback;
     procedure RegisterCallback;
   public
-    { Public declarations }
   end;
 
 var
@@ -55,7 +53,8 @@ implementation
 
 {$R *.dfm}
 
-uses DBXEchoToChannelClientModule;
+uses
+  DBXEchoToChannelClientModule;
 
 type
   TCallbackClient = class(TDBXNamedCallback)
@@ -69,13 +68,20 @@ type
 // write to Memo control).
 procedure QueueLogValue(const AValue: string);
 begin
-  TThread.Queue(nil,
-    procedure begin if Form4 <> nil then Form4.Memo1.Lines.Add(AValue) end)
+  TThread.Queue(
+    nil,
+    procedure
+    begin
+      if Form4 <> nil then
+        Form4.Memo1.Lines.Add(AValue)
+    end
+  );
 end;
 
 procedure LogValue(const AValue: string);
 begin
-  if Form4 <> nil then Form4.Memo1.Lines.Add(AValue);
+  if Form4 <> nil then
+    Form4.Memo1.Lines.Add(AValue);
 end;
 
 procedure TForm4.ApplicationEvents1Idle(Sender: TObject; var Done: Boolean);
@@ -99,10 +105,8 @@ var
   LCallback: TDBXNamedCallback;
 begin
   Assert(not FCallbackChannelRegistered);
-  LCallback := TCallbackClient.Create(
-    GetCallbackName);
-  FCallbackChannelRegistered :=
-    DSClientCallbackChannelManager1.RegisterCallback(LCallback)
+  LCallback := TCallbackClient.Create(GetCallbackName);
+  FCallbackChannelRegistered := DSClientCallbackChannelManager1.RegisterCallback(LCallback)
 end;
 
 procedure TForm4.ButtonDisconnectClick(Sender: TObject);
@@ -114,8 +118,7 @@ procedure TForm4.UnregisterCallback;
 begin
   Assert(FCallbackChannelRegistered);
   FCallbackChannelRegistered := False;
-  DSClientCallbackChannelManager1.UnregisterCallback(
-      GetCallbackName);
+  DSClientCallbackChannelManager1.UnregisterCallback(GetCallbackName);
 end;
 
 procedure TForm4.ButtonEchoClick(Sender: TObject);
@@ -124,6 +127,7 @@ var
 begin
   LResult := ClientModule1.ServerMethods1Client.EchoStringToChannel(
     DSClientCallbackChannelManager1.ChannelName, Edit1.Text);
+
   if LResult then
     LogValue('OK')
   else
@@ -132,27 +136,21 @@ end;
 
 function TForm4.GetCallbackName: string;
 begin
-  // Can use any name.  To keep it simple, just use the same name as the channel.
   Result := DSClientCallbackChannelManager1.ChannelName;
 end;
 
 procedure TForm4.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   if FCallbackChannelRegistered then
-    // Clean up
     UnregisterCallback;
-
 end;
 
 procedure TForm4.FormCreate(Sender: TObject);
 var
   LGuid: TGuid;
 begin
-  // Every client needs a unique identifier.
-  // Use a guid.
   CreateGuid(LGuid);
-  DSClientCallbackChannelManager1.ManagerId :=
-    GuidToString(LGuid);
+  DSClientCallbackChannelManager1.ManagerId := GuidToString(LGuid);
   LabelManagerId.Caption := DSClientCallbackChannelManager1.ManagerId;
 end;
 
@@ -160,17 +158,14 @@ end;
 
 destructor TCallbackClient.Destroy;
 begin
-  //
   inherited;
 end;
 
 // Called when a message is received by the channel
 function TCallbackClient.Execute(const Arg: TJSONValue): TJSONValue;
 begin
-  QueueLogValue(Format('Channel/Callback: %s, received %s', [
-    Self.Name, Arg.ToString]));
+  QueueLogValue(Format('Channel/Callback: %s, received %s', [Self.Name, Arg.ToString]));
   Result := TJSONTrue.Create;
-
 end;
 
 end.

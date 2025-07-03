@@ -8,8 +8,8 @@ object ClientModule1: TClientModule1
       'Port=211'
       'CommunicationProtocol=tcp/ip'
       'DatasnapContext=datasnap/')
-    Left = 48
-    Top = 40
+    Left = 96
+    Top = 48
     UniqueId = '{13128390-5C54-4F41-84D4-119CCDC3E74B}'
   end
 end

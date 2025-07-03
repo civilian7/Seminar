@@ -67,6 +67,7 @@ end;
 
 procedure TfrmMain.tsStartClick(Sender: TObject);
 begin
+  TServerContainer.Instance.ServerTransports := [stTCPIP, stHTTP];
   TServerContainer.Instance.Start(
     procedure(ASuccess: Boolean)
     begin

@@ -9,6 +9,7 @@ uses
   System.NetEncoding,
   System.Hash,
   System.JSON,
+  System.IOUtils,
 
   Datasnap.DSServer,
   Datasnap.DSAuth,
@@ -23,6 +24,7 @@ type
   public
     function Login(AData: string): string;
     function Logout(AData: string): string;
+    function GetPicture(AData: string): string;
   end;
   {$METHODINFO OFF}
 
@@ -32,6 +34,13 @@ uses
   uServerContainer;
 
 { TLoginResource }
+
+function TUserResource.GetPicture(AData: string): string;
+begin
+  makeParams(AData);
+
+  var LBuffer :=
+end;
 
 function TUserResource.Login(AData: string): string;
 begin
