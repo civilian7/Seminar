@@ -11,55 +11,57 @@ object frmMain: TfrmMain
   Font.Name = 'Segoe UI'
   Font.Style = []
   TextHeight = 15
-  object eParams: TEdit
-    Left = 16
-    Top = 24
-    Width = 585
-    Height = 23
-    TabOrder = 0
-  end
   object btnSendFile: TButton
-    Left = 232
-    Top = 61
+    Left = 224
+    Top = 8
     Width = 99
     Height = 25
     Caption = #54028#51068#51204#49569
-    TabOrder = 1
+    TabOrder = 0
     OnClick = btnSendFileClick
   end
   object eLogs: TMemo
     Left = 16
-    Top = 103
+    Top = 136
     Width = 585
-    Height = 330
+    Height = 297
     ScrollBars = ssVertical
-    TabOrder = 2
+    TabOrder = 1
   end
   object btnDisconnect: TButton
-    Left = 121
-    Top = 61
+    Left = 113
+    Top = 8
     Width = 96
     Height = 25
     Caption = 'Disconnect'
-    TabOrder = 3
+    TabOrder = 2
     OnClick = btnDisconnectClick
   end
   object btnConnect: TButton
-    Left = 16
-    Top = 61
+    Left = 8
+    Top = 8
     Width = 99
     Height = 25
     Caption = 'Connect'
-    TabOrder = 4
+    TabOrder = 3
     OnClick = btnConnectClick
   end
   object Button1: TButton
-    Left = 337
-    Top = 61
+    Left = 329
+    Top = 8
     Width = 75
     Height = 25
     Caption = #45796#50868#47196#46300
-    TabOrder = 5
+    TabOrder = 4
     OnClick = Button1Click
+  end
+  object ProgressBar1: TProgressBar
+    Left = 8
+    Top = 48
+    Width = 585
+    Height = 33
+    Smooth = True
+    Step = 1
+    TabOrder = 5
   end
 end

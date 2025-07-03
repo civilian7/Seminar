@@ -18,16 +18,16 @@ uses
   Vcl.Dialogs,
   Vcl.StdCtrls,
 
-  ClientModuleUnit1;
+  ClientModuleUnit1, Vcl.ComCtrls;
 
 type
   TfrmMain = class(TForm)
-    eParams: TEdit;
     btnSendFile: TButton;
     eLogs: TMemo;
     btnDisconnect: TButton;
     btnConnect: TButton;
     Button1: TButton;
+    ProgressBar1: TProgressBar;
     procedure btnConnectClick(Sender: TObject);
     procedure btnDisconnectClick(Sender: TObject);
     procedure btnSendFileClick(Sender: TObject);
@@ -99,8 +99,8 @@ begin
     LocalFileStream := TFileStream.Create(ALocalFileName, fmCreate);
     try
       // 3. 프로그레스 바 초기화
-      //ProgressBar1.Max := TotalChunks;
-      //ProgressBar1.Position := 0;
+      ProgressBar1.Max := TotalChunks;
+      ProgressBar1.Position := 0;
 
       // 4. 청크별로 다운로드
       for ChunkIndex := 0 to TotalChunks - 1 do
@@ -114,7 +114,9 @@ begin
           LocalFileStream.CopyFrom(ChunkStream, ChunkStream.Size);
 
           // 프로그레스 업데이트
-          //ProgressBar1.Position := ChunkIndex + 1;
+          ProgressBar1.Position := ChunkIndex + 1;
+
+          // 화면 갱신이 필요하다면, 처리해
           Application.ProcessMessages;
         finally
           ChunkStream.Free;
@@ -162,6 +164,7 @@ begin
   var LRemoteFile := 'firebird-5.pdf';
   var LLocalFile := 'firebird-5-copy.pdf';
 
+  ProgressBar1.Position := 0;
   DownloadFile(LRemotefile, LLocalFile);
 end;
 

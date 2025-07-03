@@ -16,7 +16,7 @@ type
   TFileService = class(TComponent)
   strict private
     const
-      CHUNK_SIZE = 1024 * 64;  // 64k
+      CHUNK_SIZE = 1024 * 64;  // 64K
   public
     function GetFileInfo(const FileName: string): TJSONObject;
     function DownloadFileChunk(const FileName: string; ChunkIndex: Integer): TStream;
