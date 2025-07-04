@@ -4,7 +4,7 @@
         <ProjectVersion>20.3</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <ProjectName Condition="'$(ProjectName)'==''">Client</ProjectName>
         <TargetedPlatforms>3</TargetedPlatforms>
@@ -134,8 +134,6 @@
             <Form>ClientModule</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Common\uPacket.pas"/>
-        <DCCReference Include="..\Common\JsonDataObjects.pas"/>
         <DCCReference Include="uLogin.pas">
             <Form>LoginDialog</Form>
         </DCCReference>

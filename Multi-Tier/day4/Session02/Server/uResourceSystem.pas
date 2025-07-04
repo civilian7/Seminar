@@ -11,8 +11,9 @@ uses
   Datasnap.DSAuth,
   Datasnap.DSSession,
 
-  JsonDataObjects,
-  uPacket,
+  DS.Json,
+  DS.Packet,
+
   uServerMethods,
   uServerContainer;
 {$ENDREGION}

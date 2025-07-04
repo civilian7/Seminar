@@ -13,7 +13,7 @@ uses
   Datasnap.DSServer,
   Datasnap.DSAuth,
 
-  uPacket,
+  DS.Packet,
   uServerMethods,
   uServerContainer;
 {$ENDREGION}

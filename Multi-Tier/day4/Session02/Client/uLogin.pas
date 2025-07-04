@@ -17,8 +17,9 @@ uses
   Vcl.Dialogs,
   Vcl.StdCtrls,
 
+  DS.Packet,
+
   uGlobal,
-  uPacket,
   uClient;
 {$ENDREGION}
 

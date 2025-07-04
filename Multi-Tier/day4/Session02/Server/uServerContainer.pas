@@ -23,7 +23,7 @@ uses
   IPPeerServer,
   IPPeerAPI,
 
-  JsonDataObjects;
+  DS.Json;
 {$ENDREGION}
 
 type

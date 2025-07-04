@@ -118,6 +118,8 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -136,11 +138,8 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Common\uPacket.pas"/>
         <DCCReference Include="uResourceUser.pas"/>
         <DCCReference Include="uResourceSystem.pas"/>
-        <DCCReference Include="..\Common\JsonDataObjects.pas"/>
-        <DCCReference Include="uDBPool.pas"/>
         <DCCReference Include="uResourceDB.pas">
             <Form>DBResource</Form>
             <FormType>dfm</FormType>
@@ -167,7 +166,10 @@
                     <Source Name="MainSource">Server.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="D:\SmartWorks\LIB\BPL\Win32\Debug\Pyahu.WelcomePageList.bpl">File D:\SmartWorks\LIB\BPL\Win32\Debug\Pyahu.WelcomePageList.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k290.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp290.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="5">

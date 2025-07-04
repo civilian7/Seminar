@@ -3,6 +3,12 @@
         <ProjectGuid>{5DA03E3D-E246-4108-982F-AB417B5D6FCB}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
+        <Projects Include="..\..\..\COMPONENT\DadaSnap\Packages\DS.DataSnap.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\..\COMPONENT\DadaSnap\Packages\DS.DataSnap.Design.dproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="Server\Server.dproj">
             <Dependencies/>
         </Projects>
@@ -17,6 +23,24 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
+    <Target Name="DS_DataSnap">
+        <MSBuild Projects="..\..\..\COMPONENT\DadaSnap\Packages\DS.DataSnap.dproj"/>
+    </Target>
+    <Target Name="DS_DataSnap:Clean">
+        <MSBuild Projects="..\..\..\COMPONENT\DadaSnap\Packages\DS.DataSnap.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DS_DataSnap:Make">
+        <MSBuild Projects="..\..\..\COMPONENT\DadaSnap\Packages\DS.DataSnap.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DS_DataSnap_Design">
+        <MSBuild Projects="..\..\..\COMPONENT\DadaSnap\Packages\DS.DataSnap.Design.dproj"/>
+    </Target>
+    <Target Name="DS_DataSnap_Design:Clean">
+        <MSBuild Projects="..\..\..\COMPONENT\DadaSnap\Packages\DS.DataSnap.Design.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DS_DataSnap_Design:Make">
+        <MSBuild Projects="..\..\..\COMPONENT\DadaSnap\Packages\DS.DataSnap.Design.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Server">
         <MSBuild Projects="Server\Server.dproj"/>
     </Target>
@@ -36,13 +60,13 @@
         <MSBuild Projects="Client\Client.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Server;Client"/>
+        <CallTarget Targets="DS_DataSnap;DS_DataSnap_Design;Server;Client"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Server:Clean;Client:Clean"/>
+        <CallTarget Targets="DS_DataSnap:Clean;DS_DataSnap_Design:Clean;Server:Clean;Client:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Server:Make;Client:Make"/>
+        <CallTarget Targets="DS_DataSnap:Make;DS_DataSnap_Design:Make;Server:Make;Client:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

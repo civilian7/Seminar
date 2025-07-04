@@ -34,7 +34,7 @@ uses
   FireDAC.UI.Intf,
   FireDAC.VCLUI.Wait,
 
-  uDBPool,
+  DS.DBPool,
   uServerMethods,
   uServerContainer;
 

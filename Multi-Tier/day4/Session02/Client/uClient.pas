@@ -27,7 +27,7 @@ uses
   Datasnap.DSProxy,
 
   uGlobal,
-  uPacket;
+  DS.Packet;
 {$ENDREGION}
 
 type

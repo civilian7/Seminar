@@ -16,10 +16,10 @@ uses
   Datasnap.DSReflect,
   Datasnap.DSNames,
 
-  JsonDataObjects,
+  DS.Json,
+  DS.Packet,
+  DS.DBPool,
 
-  uPacket,
-  uDBPool,
   uServerContainer;
 
 {$ENDREGION}

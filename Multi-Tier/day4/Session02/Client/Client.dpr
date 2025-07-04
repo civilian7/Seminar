@@ -5,8 +5,6 @@ uses
   Vcl.Controls,
   uMain in 'uMain.pas' {frmMain},
   uClient in 'uClient.pas' {ClientModule: TDataModule},
-  uPacket in '..\Common\uPacket.pas',
-  JsonDataObjects in '..\Common\JsonDataObjects.pas',
   uLogin in 'uLogin.pas' {LoginDialog},
   uGlobal in 'uGlobal.pas';
 

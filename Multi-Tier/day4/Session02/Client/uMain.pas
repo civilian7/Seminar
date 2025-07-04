@@ -11,17 +11,21 @@ uses
   System.Classes,
   System.NetEncoding,
 
+  Data.DB,
+
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
+  Vcl.Grids,
+  Vcl.DBGrids,
   Vcl.Dialogs,
   Vcl.StdCtrls,
   Vcl.ExtCtrls,
   Vcl.Imaging.pngimage,
   Vcl.Imaging.jpeg,
 
-  uPacket,
-  uClient, Data.DB, Vcl.Grids, Vcl.DBGrids;
+  DS.Packet,
+  uClient;
 
 type
   TfrmMain = class(TForm)
