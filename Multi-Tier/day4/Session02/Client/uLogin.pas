@@ -77,6 +77,7 @@ begin
       case LResult of
       0:
         begin
+          TGlobal.UserID := eUserID.Text;
           TGlobal.SaveUserID := eSaveUserID.Checked;
           ModalResult := mrOk;
         end;

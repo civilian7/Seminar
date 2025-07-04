@@ -10,6 +10,7 @@ object frmMain: TfrmMain
   Font.Height = -12
   Font.Name = #47569#51008' '#44256#46357
   Font.Style = []
+  FormStyle = fsMDIForm
   Menu = MainMenu1
   TextHeight = 15
   object ToolBar1: TToolBar
@@ -32,13 +33,22 @@ object frmMain: TfrmMain
     Top = 602
     Width = 997
     Height = 19
-    Panels = <>
+    Panels = <
+      item
+        Width = 50
+      end
+      item
+        Width = 50
+      end
+      item
+        Width = 50
+      end>
     ExplicitLeft = 504
     ExplicitTop = 328
     ExplicitWidth = 0
   end
   object MainMenu1: TMainMenu
-    Left = 48
+    Left = 56
     Top = 152
     object F1: TMenuItem
       Caption = #54028#51068'(&F)'
@@ -46,21 +56,16 @@ object frmMain: TfrmMain
         Action = acExit
       end
     end
-    object C1: TMenuItem
-      Caption = #49324#50857#51088#44288#47532'(&C)'
-      object L1: TMenuItem
-        Caption = #49324#50857#51088' '#47532#49828#53944' '#51312#54924'(&L)'
-      end
-    end
   end
   object ActionList1: TActionList
-    Left = 48
-    Top = 224
+    Left = 56
+    Top = 216
     object acExit: TAction
       Caption = #45149#45236#44592
-      Enabled = False
       ShortCut = 32856
-      OnExecute = acExitExecute
+    end
+    object acUserList: TAction
+      Caption = #49324#50857#51088' '#47532#49828#53944'(&L)'
     end
   end
 end

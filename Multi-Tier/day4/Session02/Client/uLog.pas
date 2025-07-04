@@ -44,7 +44,7 @@ procedure TLogManager.CreateParams(var Params: TCreateParams);
 begin
   inherited;
 
-  Params.
+  Params.WndParent := GetDesktopWindow();
 end;
 
 class function TLogManager.GetInstance: TLogManager;

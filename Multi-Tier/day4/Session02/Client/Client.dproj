@@ -142,6 +142,15 @@
             <Form>LogManager</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="CM0001U01.pas">
+            <Form>CM0001F01</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="CM0001U02.pas">
+            <Form>CM0001F02</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uBaseForm.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
