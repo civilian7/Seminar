@@ -19,12 +19,15 @@ uses
   Data.DBXDBReaders,
   Data.DBXCDSReaders,
   Data.DBXJSONReflect,
+  Datasnap.DBClient,
+  Datasnap.DSConnect,
 
   IPPeerClient,
 
   Datasnap.DSProxy,
 
-  uPacket, Datasnap.DBClient, Datasnap.DSConnect;
+  uGlobal,
+  uPacket;
 {$ENDREGION}
 
 type
@@ -211,11 +214,12 @@ end;
 procedure TClientModule.Connect(const AProc: TProc<Boolean>);
 begin
   try
+    Connection.Params.Values['HostName'] := TGlobal.ServerIP;
+    Connection.Params.Values['Port'] := TGlobal.ServerPort.ToString;
     Connection.Connected := True;
     if Assigned(AProc) then
       AProc(Connection.Connected);
   except
-
   end;
 end;
 

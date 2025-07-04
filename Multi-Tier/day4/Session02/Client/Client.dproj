@@ -139,6 +139,7 @@
         <DCCReference Include="uLogin.pas">
             <Form>LoginDialog</Form>
         </DCCReference>
+        <DCCReference Include="uGlobal.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

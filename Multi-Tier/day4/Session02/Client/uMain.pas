@@ -63,10 +63,6 @@ implementation
 constructor TfrmMain.Create(AOwner: TComponent);
 begin
   inherited;
-
-  // 접속, 접속해지 이벤트 핸들러를 등록한다
-//  ClientModule1.SQLConnection1.AfterConnect := TriggerConnect;
-//  ClientModule1.SQLConnection1.AfterDisconnect := TriggerDisconnect;
 end;
 
 destructor TfrmMain.Destroy;
