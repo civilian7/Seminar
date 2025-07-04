@@ -27,6 +27,7 @@ uses
   Datasnap.DSProxy,
 
   uGlobal,
+  uLog,
   DS.Packet;
 {$ENDREGION}
 
@@ -236,8 +237,7 @@ end;
 
 procedure TClientModule.DoLog(const AMessage: string; const ALoglevel: TLoglevel);
 begin
-  if Assigned(FOnLog) then
-    FOnLog(Self, AMessage, ALogLevel);
+  TLogManager.Instance.Log(AMessage);
 end;
 
 procedure TClientModule.Execute(ARequest: IRequest; out AResponse: IResponse; const AProc: TProc<IResponse>);

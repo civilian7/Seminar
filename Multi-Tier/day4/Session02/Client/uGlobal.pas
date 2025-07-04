@@ -5,7 +5,9 @@ interface
 uses
   System.SysUtils,
   System.Classes,
-  System.IniFiles;
+  System.IniFiles,
+
+  uLog;
 
 type
   TGlobal = class sealed
@@ -33,6 +35,8 @@ implementation
 
 class constructor TGlobal.Create;
 begin
+  TLogManager.Instance.Log('설정값을 읽습니다');
+
   var LIniFile := ChangeFileExt(ParamStr(0), '.ini');
   with TIniFile.Create(LIniFile) do
   begin

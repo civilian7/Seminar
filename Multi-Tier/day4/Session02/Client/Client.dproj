@@ -4,7 +4,7 @@
         <ProjectVersion>20.3</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <ProjectName Condition="'$(ProjectName)'==''">Client</ProjectName>
         <TargetedPlatforms>3</TargetedPlatforms>
@@ -75,12 +75,12 @@
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_UsePackage>vclwinx;DataSnapServer;fmx;FBC.Report.Indy;vclie;DbxCommonDriver;bindengine;IndyIPCommon;VCLRESTComponents;DBXMSSQLDriver;FireDACCommonODBC;emsclient;DX.Grid;appanalytics;IndyProtocols;vclx;Skia.Package.RTL;FBC.UniDAC.SQLite3;dbxcds;vcledge;FmxTeeUI;DX.OrgChart;FBC.UniDAC.ODBC;DBXFirebirdDriver;FBC.Graphics32;FBC.Report.INet;FireDACSqliteDriver;DbxClientDriver;DX.Print;soapmidas;TeeUI;DX.Sheet;dbexpress;FBC.WPTools;inet;DX.Cloud;FBC.Script.FD;vcltouch;FBC.FNCVcl;FireDACDBXDriver;fmxdae;CustomIPTransport;FireDACMSSQLDriver;FBC.Report.ADO;FBC.Report.Core;FBC.WebView;DX.Data.FD;FBC.WebView.Design;IndySystem;DX.Gantt;FBC.UniDAC.Postgre;FBC.Script;FBC.UniVCL;DX.PDFViewer;FBC.Report.Export;FBC.Report.Chart;vclFireDAC;FireDACCommon;DataSnapServerMidas;FireDACODBCDriver;emsserverresource;FBC.UniDAC;bindcompdbx;rtl;FireDACMySQLDriver;FBC.VirtualTrees;FBC.ZInt;FBC.UI.Vcl;DBXSqliteDriver;FBC.ChromeTabs;TMSVCLUIPackPkgDXE15;FBC.DACVCL;DBXSybaseASEDriver;FBC.Report.UniDAC;DX.Bar;vclimg;DataSnapFireDAC;inetdbxpress;FireDAC;xmlrtl;FBC.Report.Engine;dsnap;DX.EMF.ADO;FBC.UniDAC.IB;FireDACDb2Driver;DBXOracleDriver;DX.Print.Tee;DBXInformixDriver;fmxobj;bindcompvclsmp;DataSnapNativeClient;FBC.WX;DatasnapConnectorsFreePascal;DX.TreeList;FBC.UniDAC.Acess;FBC.ZPL;emshosting;FBC.UniDAC.SQLServer;FireDACCommonDriver;DX.Chart;FBC.Report.PDF;IndyIPClient;FBC.Styles;DX.FlowChart;DX.Edit;bindcompvclwinx;DX.Scheduler;emsedge;bindcompfmx;TMSVCLUIPackPkgExDXE15;FBC.Script.Chart;inetdb;DX.VertGrid;DX.Data.ADO;FireDACASADriver;FBC.DAC.Query;Tee;DX.Controls;FBC.Image;vclactnband;TMSVCLUIPackPkgXlsDXE15;fmxFireDAC;FBC.HTMLViewer;FireDACInfxDriver;DBXMySQLDriver;VclSmp;DataSnapCommon;fmxase;TMSVCLUIPackPkgWizDXE15;DBXOdbcDriver;dbrtl;FireDACOracleDriver;Skia.Package.FMX;TeeDB;FBC.TextEditor;FireDACMSAccDriver;FBC.Report.I18N;DX.Data;DataSnapIndy10ServerTransport;DataSnapConnectors;vcldsnap;DBXInterBaseDriver;FireDACMongoDBDriver;FBC.Script.ADO;FireDACTDataDriver;FBC.UniDAC.Mongo;DX.PivotGrid;Skia.Package.VCL;vcldb;FBC.Image32;FBC.UniDAC.MySQL;FBC.UniDAC.TDS;FBC.EhLib;FBC.Report.HTML;bindcomp;inetstn;IndyCore;RESTBackendComponents;FBC.Edge;FireDACADSDriver;RESTComponents;IndyIPServer;vcl;dsnapxml;adortl;dsnapcon;DataSnapClient;DataSnapProviderClient;DX.EMF.FD;FBC.Script.UniDAC;FBC.UniDAC.Oracle;FBC.FNCCore;DBXDb2Driver;DX.EMF;FBC.Report.Server;emsclientfiredac;FireDACPgDriver;FireDACDSDriver;FBC.Report.FD;tethering;bindcompvcl;CloudService;DBXSybaseASADriver;DX.Base;FB.Raize;FMXTee;DX.DBTree;FBC.UniDAC.Excel;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vcl;vclx;vcldb;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
@@ -138,6 +138,10 @@
             <Form>LoginDialog</Form>
         </DCCReference>
         <DCCReference Include="uGlobal.pas"/>
+        <DCCReference Include="uLog.pas">
+            <Form>LogManager</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -159,7 +163,10 @@
                     <Source Name="MainSource">Client.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="D:\SmartWorks\LIB\BPL\Win32\Debug\Pyahu.WelcomePageList.bpl">File D:\SmartWorks\LIB\BPL\Win32\Debug\Pyahu.WelcomePageList.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k290.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp290.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="5">
