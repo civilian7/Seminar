@@ -129,15 +129,16 @@
         </DelphiCompile>
         <DCCReference Include="uMain.pas">
             <Form>frmMain</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uClient.pas">
             <Form>ClientModule</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Common\uPacket.pas"/>
         <DCCReference Include="..\Common\JsonDataObjects.pas"/>
+        <DCCReference Include="uLogin.pas">
+            <Form>LoginDialog</Form>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
